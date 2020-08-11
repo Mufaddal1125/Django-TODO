@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Chilanka&family=Lemonada&family=Nanum+Myeongjo:wght@700&family=Quicksand:wght@400;500&display=swap');
+
+html, body{
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+}
+
+body{
+     color: white;
+}
+
+.background{
+     background: linear-gradient(45deg, rgb(72, 91, 199), rgb(58, 136, 240), rgb(42, 134, 253)) no-repeat;
+     background-size: cover;
+     height: 100vh;
+     width: 100vw;
+     position: absolute;
+     top: 0;
+     left: 0;
+     z-index: -10;
+}
+
+.container{
+     margin: 20px;
+     font-size: 1.5rem;
+}
+
+.container h1, h2{
+     font-family: "Lemonada", cursive;
+}
+.container table{
+     width: 400px;
+
+}
+.container table, th, td{
+     font-family: "Quicksand", sans-serif;
+}
+td{
+     text-align: center;
+}
+th{
+     font-size: 2rem;
+     padding: 20px 0;
+}
+
+.container .form {
+     display: flex;
+     flex-direction: column;
+     width: 300px;
+     font-family: "Chilanka", cursive;
+}
+
+.container .form *{
+     margin: 10px;
+
+}
+.form input{
+     color: white;
+     background: inherit;
+     border: none;
+     border-bottom: 2px solid white;
+     outline: none;
+     font-size: 1rem;
+}
+
+.form button{
+     background: inherit;
+     color: white;
+     border: 2px solid black;
+     border-radius: 5px;
+     font-size: 2rem;
+     font-weight: 700;
+     transition: 0.3s ease;
+}
+
+.form button:hover{
+     background: black;
+     color: white;
+}
+
+td a{
+     text-decoration: none;
+     margin: 0 5px;
+}
+tr td:first-child a{
+     position: absolute;
+     left: 10px;
+}
