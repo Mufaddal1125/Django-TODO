@@ -28,10 +28,10 @@ def add(request):
     if request.method == "POST":
         form = Forms(request.POST)
         if form.is_valid():
+            request.session['priority'] = len(request.session['tasks']) + 1
             task = {"task": form.cleaned_data['task'], "priority": request.session['priority']}
             request.session['tasks'] += [task]
             request.session['tasks'].sort(key=taskssort)
-            request.session['priority'] = request.session['tasks'][-1].get("priority") + 1
 
     return HttpResponseRedirect(reverse('index'))
 
@@ -45,17 +45,15 @@ def removetask(request):
 
 def inc(request, index):
     tasks = request.session['tasks']
-    if tasks[index]["priority"] > 1:
-        tasks[index]["priority"] -= 1
-        request.session['tasks'] = tasks
-        request.session['tasks'].sort(key=taskssort)
+    tasks[index]["priority"] -= 1
+    request.session['tasks'] = tasks
+    request.session['tasks'].sort(key=taskssort)
     return HttpResponseRedirect(reverse("index"))
 
 
 def dec(request, index):
     tasks = request.session['tasks']
-    if tasks[index]["priority"] < 10:
-        tasks[index]["priority"] += 1
-        request.session['tasks'] = tasks
-        request.session['tasks'].sort(key=taskssort)
+    tasks[index]["priority"] += 1
+    request.session['tasks'] = tasks
+    request.session['tasks'].sort(key=taskssort)
     return HttpResponseRedirect(reverse("index"))

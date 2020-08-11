@@ -87,3 +87,6 @@ tr td:first-child a{
      position: absolute;
      left: 10px;
 }
+.container p{
+     font-family: "Quicksand", sans-serif;
+}
