@@ -12,7 +12,6 @@
 </head>
 
 <body>
-<div class="background"></div>
 <div class="container">
 
     <h1> To Do List </h1>
@@ -32,7 +31,7 @@
                     </svg>
                 </a>
 
-                    {{ task.task }}
+                    {{ task }}
                 </td>
                 <td>
                 <span>
@@ -68,8 +67,9 @@
 
     <form class="form" action="{% url 'add' %}" method="POST">
         {% csrf_token %}
-        {{ form }}
-        <button type="submit">Add ToDo</button>
+        <label for="id_task">New task:</label>
+        <input type="text" name="task" required="true" id="id_task" autofocus>
+        <button type="submit">Add ToDo</button> 
     </form>
 
 </div>

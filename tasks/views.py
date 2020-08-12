@@ -10,9 +10,8 @@ class Forms(forms.Form):
 
 
 def index(request):
-    if "tasks" not in request.session or "priority" not in request.session:
+    if "tasks" not in request.session:
         request.session['tasks'] = []
-        request.session['priority'] = 0
     context = {
         "tasks": request.session['tasks'],
         "form": Forms()
@@ -20,20 +19,16 @@ def index(request):
     return render(request, "tasks/index.html", context)
 
 
-def taskssort(e):
-    return e['priority']
-
-
 def add(request):
     if request.method == "POST":
         form = Forms(request.POST)
         if form.is_valid():
             request.session['priority'] = len(request.session['tasks']) + 1
-            task = {"task": form.cleaned_data['task'], "priority": request.session['priority']}
+            task = form.cleaned_data['task']
             request.session['tasks'] += [task]
-            request.session['tasks'].sort(key=taskssort)
 
     return HttpResponseRedirect(reverse('index'))
+
 
 def removetask(request):
     tasks = request.session['tasks']
@@ -45,15 +40,21 @@ def removetask(request):
 
 def inc(request, index):
     tasks = request.session['tasks']
-    tasks[index]["priority"] -= 1
-    request.session['tasks'] = tasks
-    request.session['tasks'].sort(key=taskssort)
+    if index > 0:
+        task = tasks[index]
+        prevtask = tasks[index - 1]
+        tasks[index] = prevtask
+        tasks[index - 1] = task
+        request.session['tasks'] = tasks
     return HttpResponseRedirect(reverse("index"))
 
 
 def dec(request, index):
     tasks = request.session['tasks']
-    tasks[index]["priority"] += 1
-    request.session['tasks'] = tasks
-    request.session['tasks'].sort(key=taskssort)
+    if index < len(tasks) - 1:
+        task = tasks[index]
+        prevtask = tasks[index + 1]
+        tasks[index] = prevtask
+        tasks[index + 1] = task
+        request.session['tasks'] = tasks
     return HttpResponseRedirect(reverse("index"))
