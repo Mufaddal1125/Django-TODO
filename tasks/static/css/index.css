@@ -29,20 +29,6 @@ body{
 .container h1, h2{
      font-family: "Lemonada", cursive;
 }
-.container table{
-     width: 400px;
-
-}
-.container table, th, td{
-     font-family: "Quicksand", sans-serif;
-}
-td{
-     text-align: center;
-}
-th{
-     font-size: 2rem;
-     padding: 20px 0;
-}
 
 .container .form {
      display: flex;
@@ -78,14 +64,15 @@ th{
      background: black;
      color: white;
 }
-
-td a{
+li{
+     text-transform: capitalize;
+}
+a{
      text-decoration: none;
      margin: 0 5px;
 }
-tr td:first-child a{
-     position: absolute;
-     left: 10px;
+li{
+     list-style-type: disc;
 }
 .container p{
      font-family: "Quicksand", sans-serif;
